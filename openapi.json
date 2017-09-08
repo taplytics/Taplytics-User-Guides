@@ -1,0 +1,1850 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Taplytics API Reference",
+    "description": "TODO: Add a description",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://www.example.com",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/v2/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "List all Users",
+        "description": "",
+        "operationId": "ListAllUsers",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number used for pagination",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            },
+            "example": "1"
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "An optional parameter to define the number of results you would like returned",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 100
+            },
+            "example": "100"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "example": [
+                      {
+                        "id": "548223f2c7036020742ff21c",
+                        "created_at": "2015-01-06T03:51:57+00:00",
+                        "user_id": "42",
+                        "email": "jonathan@taplytics.com",
+                        "first_name": "Jonathan",
+                        "last_name": "Norris",
+                        "name": "Jonathan Taylor Thomas Norris",
+                        "metadata": {
+                          "occupation": "Bug Fixer",
+                          "favourite_color": "Chartreuse",
+                          "favourite movie": "You Don't Mess With The Zohan"
+                        },
+                        "last_seen_ip": "123.123.123.123",
+                        "location": {
+                          "city_name": "San Francisco",
+                          "continent_code": "NA",
+                          "country_code": "USA",
+                          "country_name": "United States",
+                          "latitude": 37.77493,
+                          "longitude": -122.41942,
+                          "postal_code": null,
+                          "region_name": "San Francisco",
+                          "timezone": "Europe/San Francisco"
+                        },
+                        "experiments": [
+                          {
+                            "experiment_id": "548223f2c7036020742aa21c",
+                            "variation": "548223f2c7036020742ff21a"
+                          }
+                        ],
+                        "devices": [
+                          {}
+                        ],
+                        "session_count": 16
+                      }
+                    ],
+                    "$ref": "#/components/schemas/ListAllUsersResponse"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "548223f2c7036020742ff21c",
+                    "created_at": "2015-01-06T03:51:57+00:00",
+                    "user_id": "42",
+                    "email": "jonathan@taplytics.com",
+                    "first_name": "Jonathan",
+                    "last_name": "Norris",
+                    "name": "Jonathan Taylor Thomas Norris",
+                    "metadata": {
+                      "occupation": "Bug Fixer",
+                      "favourite_color": "Chartreuse",
+                      "favourite movie": "You Don't Mess With The Zohan"
+                    },
+                    "last_seen_ip": "123.123.123.123",
+                    "location": {
+                      "city_name": "San Francisco",
+                      "continent_code": "NA",
+                      "country_code": "USA",
+                      "country_name": "United States",
+                      "latitude": 37.77493,
+                      "longitude": -122.41942,
+                      "postal_code": null,
+                      "region_name": "San Francisco",
+                      "timezone": "Europe/San Francisco"
+                    },
+                    "experiments": [
+                      {
+                        "experiment_id": "548223f2c7036020742aa21c",
+                        "variation": "548223f2c7036020742ff21a"
+                      }
+                    ],
+                    "devices": [
+                      {}
+                    ],
+                    "session_count": 16
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/v2/users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Retrieve a User",
+        "description": "A single User object with all its details, accessed via either ID, email or your custom user ID. If an email or custom ID is provided in the URL parameters, the ID field can be omitted. Note that custom data can only be reliably kept with no more than one level of nesting. If the user currently has a custom data object and one is posted, the two will be merged.",
+        "operationId": "RetrieveAUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "String `id` of the User to retrieve.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "548223f2c7036020742ff21c"
+            },
+            "example": "548223f2c7036020742ff21c"
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Your custom defined user id.",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "42"
+            },
+            "example": "42"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Your custom defined user email",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "jonathan@taplytics.com"
+            },
+            "example": "jonathan@taplytics.com"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "id": "548223f2c7036020742ff21c",
+                    "created_at": "2015-01-06T03:51:57+00:00",
+                    "user_id": "42",
+                    "email": "jonathan@taplytics.com",
+                    "first_name": "Jonathan",
+                    "last_name": "Norris",
+                    "custom_data": {
+                      "occupation": "Bug Fixer",
+                      "favourite_color": "Chartreuse",
+                      "favourite movie": "You Don't Mess With The Zohan"
+                    },
+                    "last_seen_ip": "123.123.123.123",
+                    "location": {
+                      "city_name": "San Francisco",
+                      "continent_code": "NA",
+                      "country_code": "USA",
+                      "country_name": "United States",
+                      "latitude": 37.77493,
+                      "longitude": -122.41942,
+                      "postal_code": null,
+                      "region_name": "San Francisco",
+                      "timezone": "Europe/San Francisco"
+                    },
+                    "session_count": 16,
+                    "gender": "male"
+                  },
+                  "$ref": "#/components/schemas/RetrieveAUserResponse"
+                },
+                "example": {
+                  "id": "548223f2c7036020742ff21c",
+                  "created_at": "2015-01-06T03:51:57+00:00",
+                  "user_id": "42",
+                  "email": "jonathan@taplytics.com",
+                  "first_name": "Jonathan",
+                  "last_name": "Norris",
+                  "custom_data": {
+                    "occupation": "Bug Fixer",
+                    "favourite_color": "Chartreuse",
+                    "favourite movie": "You Don't Mess With The Zohan"
+                  },
+                  "last_seen_ip": "123.123.123.123",
+                  "location": {
+                    "city_name": "San Francisco",
+                    "continent_code": "NA",
+                    "country_code": "USA",
+                    "country_name": "United States",
+                    "latitude": 37.77493,
+                    "longitude": -122.41942,
+                    "postal_code": null,
+                    "region_name": "San Francisco",
+                    "timezone": "Europe/San Francisco"
+                  },
+                  "session_count": 16,
+                  "gender": "male"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create or Update a User",
+        "description": "A single User object with all its details, accessed via either ID, email or your custom user ID. If an email or custom ID is provided in the URL parameters, the ID field can be omitted. Note that custom data can only be reliably kept with no more than one level of nesting. If the user currently has a custom data object and one is posted, the two will be merged.",
+        "operationId": "CreateOrUpdateAUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "String `id` of the User to retrieve.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "548223f2c7036020742ff21c"
+            },
+            "example": "548223f2c7036020742ff21c"
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Your custom defined user id.",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "42"
+            },
+            "example": "42"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Your custom defined user email",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "jonathan@taplytics.com"
+            },
+            "example": "jonathan@taplytics.com"
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateAUserRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "id": "548223f2c7036020742ff21c",
+                    "created_at": "2015-01-06T03:51:57+00:00",
+                    "user_id": "42",
+                    "email": "jonathan@taplytics.com",
+                    "first_name": "Jonathan",
+                    "last_name": "Norris",
+                    "custom_data": {
+                      "occupation": "Bug Fixer",
+                      "favourite_color": "Chartreuse",
+                      "favourite movie": "You Don't Mess With The Zohan"
+                    },
+                    "last_seen_ip": "123.123.123.123",
+                    "location": {
+                      "city_name": "San Francisco",
+                      "continent_code": "NA",
+                      "country_code": "USA",
+                      "country_name": "United States",
+                      "latitude": 37.77493,
+                      "longitude": -122.41942,
+                      "postal_code": null,
+                      "region_name": "San Francisco",
+                      "timezone": "Europe/San Francisco"
+                    },
+                    "session_count": 16,
+                    "gender": "male"
+                  },
+                  "$ref": "#/components/schemas/CreateOrUpdateAUserResponse"
+                },
+                "example": {
+                  "id": "548223f2c7036020742ff21c",
+                  "created_at": "2015-01-06T03:51:57+00:00",
+                  "user_id": "42",
+                  "email": "jonathan@taplytics.com",
+                  "first_name": "Jonathan",
+                  "last_name": "Norris",
+                  "custom_data": {
+                    "occupation": "Bug Fixer",
+                    "favourite_color": "Chartreuse",
+                    "favourite movie": "You Don't Mess With The Zohan"
+                  },
+                  "last_seen_ip": "123.123.123.123",
+                  "location": {
+                    "city_name": "San Francisco",
+                    "continent_code": "NA",
+                    "country_code": "USA",
+                    "country_name": "United States",
+                    "latitude": 37.77493,
+                    "longitude": -122.41942,
+                    "postal_code": null,
+                    "region_name": "San Francisco",
+                    "timezone": "Europe/San Francisco"
+                  },
+                  "session_count": 16,
+                  "gender": "male"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Remove a User",
+        "description": "A single User object with all its details, accessed via either ID, email or your custom user ID. If an email or custom ID is provided in the URL parameters, the ID field can be omitted. Note that custom data can only be reliably kept with no more than one level of nesting. If the user currently has a custom data object and one is posted, the two will be merged.",
+        "operationId": "RemoveAUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "String `id` of the User to retrieve.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "548223f2c7036020742ff21c"
+            },
+            "example": "548223f2c7036020742ff21c"
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "Your custom defined user id.",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "42"
+            },
+            "example": "42"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Your custom defined user email\n+",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "jonathan@taplytics.com"
+            },
+            "example": "jonathan@taplytics.com"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/v2/experiments": {
+      "get": {
+        "tags": [
+          "Experiments"
+        ],
+        "summary": "List all Experiments",
+        "description": "",
+        "operationId": "ListAllExperiments",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number used for pagination",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            },
+            "example": "1"
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "An optional parameter to define the number of results you would like returned",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 100
+            },
+            "example": "100"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "example": [
+                      {
+                        "id": "548223f2c7036020742ff21c",
+                        "created_at": "2015-01-06T03:51:57+00:00",
+                        "user_id": "42",
+                        "email": "jonathan@taplytics.com",
+                        "first_name": "Jonathan",
+                        "last_name": "Norris",
+                        "name": "Jonathan Taylor Thomas Norris",
+                        "metadata": {
+                          "occupation": "Bug Fixer",
+                          "favourite_color": "Chartreuse",
+                          "favourite movie": "You Don't Mess With The Zohan"
+                        },
+                        "last_seen_ip": "123.123.123.123",
+                        "location": {
+                          "city_name": "San Francisco",
+                          "continent_code": "NA",
+                          "country_code": "USA",
+                          "country_name": "United States",
+                          "latitude": 37.77493,
+                          "longitude": -122.41942,
+                          "postal_code": null,
+                          "region_name": "San Francisco",
+                          "timezone": "Europe/San Francisco"
+                        },
+                        "experiments": [
+                          {
+                            "experiment_id": "548223f2c7036020742aa21c",
+                            "variation": "548223f2c7036020742ff21a"
+                          }
+                        ],
+                        "devices": [
+                          {}
+                        ],
+                        "session_count": 16
+                      }
+                    ],
+                    "$ref": "#/components/schemas/ListAllExperimentsResponse"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "548223f2c7036020742ff21c",
+                    "created_at": "2015-01-06T03:51:57+00:00",
+                    "user_id": "42",
+                    "email": "jonathan@taplytics.com",
+                    "first_name": "Jonathan",
+                    "last_name": "Norris",
+                    "name": "Jonathan Taylor Thomas Norris",
+                    "metadata": {
+                      "occupation": "Bug Fixer",
+                      "favourite_color": "Chartreuse",
+                      "favourite movie": "You Don't Mess With The Zohan"
+                    },
+                    "last_seen_ip": "123.123.123.123",
+                    "location": {
+                      "city_name": "San Francisco",
+                      "continent_code": "NA",
+                      "country_code": "USA",
+                      "country_name": "United States",
+                      "latitude": 37.77493,
+                      "longitude": -122.41942,
+                      "postal_code": null,
+                      "region_name": "San Francisco",
+                      "timezone": "Europe/San Francisco"
+                    },
+                    "experiments": [
+                      {
+                        "experiment_id": "548223f2c7036020742aa21c",
+                        "variation": "548223f2c7036020742ff21a"
+                      }
+                    ],
+                    "devices": [
+                      {}
+                    ],
+                    "session_count": 16
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/v2/experiments/{id}": {
+      "get": {
+        "tags": [
+          "Experiments"
+        ],
+        "summary": "Retrieve an Experiment",
+        "description": "A single Experiment object with all its details",
+        "operationId": "RetrieveAnExperiment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "String `id` of the Experiment to retrieve.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "548223f2c7036020742ff21c"
+            },
+            "example": "548223f2c7036020742ff21c"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "id": "548223f2c7036020742ff21c",
+                    "project_id": "52718670ef1a872530000022",
+                    "variations": [
+                      "548223f2c7036020742ff21c",
+                      "512263f2c79g607s142gf21h"
+                    ],
+                    "winning_variation": "548223f2c7036020742ff21c",
+                    "baseline_variation": "548223f2c7036020742ff21c",
+                    "goal_ids": [
+                      "54ac360cc4d37a81567a72e7"
+                    ],
+                    "status": "active",
+                    "description": "Disables the Buy button",
+                    "min_app_version": "1.0",
+                    "max_app_version": "1.8.4",
+                    "filters": {
+                      "version": "1.2.3",
+                      "os_version": "4.4.4"
+                    },
+                    "created_at": "2015-01-06T03:51:57+00:00",
+                    "updated_at": "2015-01-06T03:51:57+00:00"
+                  },
+                  "$ref": "#/components/schemas/RetrieveAnExperimentResponse"
+                },
+                "example": {
+                  "id": "548223f2c7036020742ff21c",
+                  "project_id": "52718670ef1a872530000022",
+                  "variations": [
+                    "548223f2c7036020742ff21c",
+                    "512263f2c79g607s142gf21h"
+                  ],
+                  "winning_variation": "548223f2c7036020742ff21c",
+                  "baseline_variation": "548223f2c7036020742ff21c",
+                  "goal_ids": [
+                    "54ac360cc4d37a81567a72e7"
+                  ],
+                  "status": "active",
+                  "description": "Disables the Buy button",
+                  "min_app_version": "1.0",
+                  "max_app_version": "1.8.4",
+                  "filters": {
+                    "version": "1.2.3",
+                    "os_version": "4.4.4"
+                  },
+                  "created_at": "2015-01-06T03:51:57+00:00",
+                  "updated_at": "2015-01-06T03:51:57+00:00"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      },
+      "delete": {
+        "tags": [
+          "Experiments"
+        ],
+        "summary": "Remove an Experiment",
+        "description": "A single Experiment object with all its details",
+        "operationId": "RemoveAnExperiment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Taplytics id of the experiment you would like to delete.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "548223f2c7036020742ff21c"
+            },
+            "example": "548223f2c7036020742ff21c"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "deleted": true,
+                    "id": "548223f2c7036020742ff21c"
+                  },
+                  "$ref": "#/components/schemas/RemoveAnExperimentResponse"
+                },
+                "example": {
+                  "deleted": true,
+                  "id": "548223f2c7036020742ff21c"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/v2/events": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Create New Events",
+        "description": "Post a list of new events to the server. Must provide a session_id with the request, and each event must have a name. No more than 100 events can be sent in a single request body.",
+        "operationId": "CreateNewEvents",
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "query",
+            "description": "Taplytics id of the current user session you wish to send an event for",
+            "required": true,
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "string",
+              "example": "548223f2c7036020742ff21c"
+            },
+            "example": "548223f2c7036020742ff21c"
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CreateNewEventsRequest"
+                },
+                "description": ""
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "deprecated": false,
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/v2/push": {
+      "get": {
+        "tags": [
+          "Push Notifications"
+        ],
+        "summary": "List all Push Notifications",
+        "description": "The default endpoint to send a single push notification, or a batch of notifications.",
+        "operationId": "ListAllPushNotifications",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number used for pagination",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 1
+            },
+            "example": "1"
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "An optional parameter to define the number of results you would like returned",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "example": 100
+            },
+            "example": "100"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "example": [
+                      {
+                        "id": "548013f2c703f020242ff21c",
+                        "filters": [
+                          {
+                            "type": "an_version",
+                            "comparator": ">=",
+                            "values": [
+                              "5.0.0"
+                            ]
+                          },
+                          {
+                            "type": "ios_version",
+                            "comparator": "!=",
+                            "values": [
+                              "8.0.1"
+                            ]
+                          },
+                          {
+                            "type": "country",
+                            "comparator": "=",
+                            "values": [
+                              "Canada",
+                              "US"
+                            ]
+                          },
+                          {
+                            "type": "custom_data",
+                            "comparator": ">=",
+                            "values": [
+                              16
+                            ],
+                            "dataKey": "dollars spent"
+                          }
+                        ],
+                        "notification": {
+                          "alert": "Congratulations, you've won a new VCR!"
+                        },
+                        "production": false
+                      }
+                    ],
+                    "$ref": "#/components/schemas/ListAllPushNotificationsResponse"
+                  }
+                },
+                "example": [
+                  {
+                    "id": "548013f2c703f020242ff21c",
+                    "filters": [
+                      {
+                        "type": "an_version",
+                        "comparator": ">=",
+                        "values": [
+                          "5.0.0"
+                        ]
+                      },
+                      {
+                        "type": "ios_version",
+                        "comparator": "!=",
+                        "values": [
+                          "8.0.1"
+                        ]
+                      },
+                      {
+                        "type": "country",
+                        "comparator": "=",
+                        "values": [
+                          "Canada",
+                          "US"
+                        ]
+                      },
+                      {
+                        "type": "custom_data",
+                        "comparator": ">=",
+                        "values": [
+                          16
+                        ],
+                        "dataKey": "dollars spent"
+                      }
+                    ],
+                    "notification": {
+                      "alert": "Congratulations, you've won a new VCR!"
+                    },
+                    "production": false
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      },
+      "post": {
+        "tags": [
+          "Push Notifications"
+        ],
+        "summary": "Send a New Push Notification",
+        "description": "The default endpoint to send a single push notification, or a batch of notifications.",
+        "operationId": "SendANewPushNotification",
+        "parameters": [
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "style": "form",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendANewPushNotificationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/v2/push/{id}": {
+      "get": {
+        "tags": [
+          "Push Notifications"
+        ],
+        "summary": "Retrieve a Push Notification",
+        "description": "The default endpoint to retrieve a single push notification",
+        "operationId": "RetrieveAPushNotification",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "id": "548013f2c703f020242ff21c",
+                    "filters": [
+                      {
+                        "type": "an_version",
+                        "comparator": ">=",
+                        "values": [
+                          "5.0.0"
+                        ]
+                      },
+                      {
+                        "type": "ios_version",
+                        "comparator": "!=",
+                        "values": [
+                          "8.0.1"
+                        ]
+                      },
+                      {
+                        "type": "country",
+                        "comparator": "=",
+                        "values": [
+                          "Canada",
+                          "US"
+                        ]
+                      },
+                      {
+                        "type": "custom_data",
+                        "comparator": ">=",
+                        "values": [
+                          16
+                        ],
+                        "dataKey": "dollars spent"
+                      }
+                    ],
+                    "notification": {
+                      "alert": "Congratulations, you've won a new VCR!"
+                    },
+                    "production": false
+                  },
+                  "$ref": "#/components/schemas/RetrieveAPushNotificationResponse"
+                },
+                "example": {
+                  "id": "548013f2c703f020242ff21c",
+                  "filters": [
+                    {
+                      "type": "an_version",
+                      "comparator": ">=",
+                      "values": [
+                        "5.0.0"
+                      ]
+                    },
+                    {
+                      "type": "ios_version",
+                      "comparator": "!=",
+                      "values": [
+                        "8.0.1"
+                      ]
+                    },
+                    {
+                      "type": "country",
+                      "comparator": "=",
+                      "values": [
+                        "Canada",
+                        "US"
+                      ]
+                    },
+                    {
+                      "type": "custom_data",
+                      "comparator": ">=",
+                      "values": [
+                        16
+                      ],
+                      "dataKey": "dollars spent"
+                    }
+                  ],
+                  "notification": {
+                    "alert": "Congratulations, you've won a new VCR!"
+                  },
+                  "production": false
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ListAllUsersResponse": {
+        "title": "List all Users response",
+        "required": [
+          "id",
+          "created_at",
+          "user_id",
+          "email",
+          "first_name",
+          "last_name",
+          "name",
+          "metadata",
+          "last_seen_ip",
+          "location",
+          "experiments",
+          "devices",
+          "session_count"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object"
+          },
+          "last_seen_ip": {
+            "type": "string"
+          },
+          "location": {
+            "type": "object"
+          },
+          "experiments": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": ""
+          },
+          "devices": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": ""
+          },
+          "session_count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "id": "548223f2c7036020742ff21c",
+          "created_at": "2015-01-06T03:51:57+00:00",
+          "user_id": "42",
+          "email": "jonathan@taplytics.com",
+          "first_name": "Jonathan",
+          "last_name": "Norris",
+          "name": "Jonathan Taylor Thomas Norris",
+          "metadata": {
+            "occupation": "Bug Fixer",
+            "favourite_color": "Chartreuse",
+            "favourite movie": "You Don't Mess With The Zohan"
+          },
+          "last_seen_ip": "123.123.123.123",
+          "location": {
+            "city_name": "San Francisco",
+            "continent_code": "NA",
+            "country_code": "USA",
+            "country_name": "United States",
+            "latitude": 37.77493,
+            "longitude": -122.41942,
+            "postal_code": null,
+            "region_name": "San Francisco",
+            "timezone": "Europe/San Francisco"
+          },
+          "experiments": [
+            {
+              "experiment_id": "548223f2c7036020742aa21c",
+              "variation": "548223f2c7036020742ff21a"
+            }
+          ],
+          "devices": [
+            {}
+          ],
+          "session_count": 16
+        }
+      },
+      "RetrieveAUserResponse": {
+        "title": "Retrieve a User response",
+        "required": [
+          "id",
+          "created_at",
+          "user_id",
+          "email",
+          "first_name",
+          "last_name",
+          "custom_data",
+          "last_seen_ip",
+          "location",
+          "session_count",
+          "gender"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "custom_data": {
+            "type": "object"
+          },
+          "last_seen_ip": {
+            "type": "string"
+          },
+          "location": {
+            "type": "object"
+          },
+          "session_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "gender": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": "548223f2c7036020742ff21c",
+          "created_at": "2015-01-06T03:51:57+00:00",
+          "user_id": "42",
+          "email": "jonathan@taplytics.com",
+          "first_name": "Jonathan",
+          "last_name": "Norris",
+          "custom_data": {
+            "occupation": "Bug Fixer",
+            "favourite_color": "Chartreuse",
+            "favourite movie": "You Don't Mess With The Zohan"
+          },
+          "last_seen_ip": "123.123.123.123",
+          "location": {
+            "city_name": "San Francisco",
+            "continent_code": "NA",
+            "country_code": "USA",
+            "country_name": "United States",
+            "latitude": 37.77493,
+            "longitude": -122.41942,
+            "postal_code": null,
+            "region_name": "San Francisco",
+            "timezone": "Europe/San Francisco"
+          },
+          "session_count": 16,
+          "gender": "male"
+        }
+      },
+      "CreateOrUpdateAUserRequest": {
+        "title": "Create or Update a User request",
+        "required": [
+          "gender",
+          "first_name",
+          "last_name",
+          "user_id",
+          "custom_data",
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "gender": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "custom_data": {
+            "type": "object"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "gender": "male",
+          "first_name": "Jonathan",
+          "last_name": "Norris",
+          "user_id": "42",
+          "custom_data": {
+            "occupation": "Bug Fixer",
+            "favourite movie": "You Don't Mess With The Zohan"
+          },
+          "email": "jonathan@taplytics.com"
+        }
+      },
+      "CreateOrUpdateAUserResponse": {
+        "title": "Create or Update a User response",
+        "required": [
+          "id",
+          "created_at",
+          "user_id",
+          "email",
+          "first_name",
+          "last_name",
+          "custom_data",
+          "last_seen_ip",
+          "location",
+          "session_count",
+          "gender"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "custom_data": {
+            "type": "object"
+          },
+          "last_seen_ip": {
+            "type": "string"
+          },
+          "location": {
+            "type": "object"
+          },
+          "session_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "gender": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": "548223f2c7036020742ff21c",
+          "created_at": "2015-01-06T03:51:57+00:00",
+          "user_id": "42",
+          "email": "jonathan@taplytics.com",
+          "first_name": "Jonathan",
+          "last_name": "Norris",
+          "custom_data": {
+            "occupation": "Bug Fixer",
+            "favourite_color": "Chartreuse",
+            "favourite movie": "You Don't Mess With The Zohan"
+          },
+          "last_seen_ip": "123.123.123.123",
+          "location": {
+            "city_name": "San Francisco",
+            "continent_code": "NA",
+            "country_code": "USA",
+            "country_name": "United States",
+            "latitude": 37.77493,
+            "longitude": -122.41942,
+            "postal_code": null,
+            "region_name": "San Francisco",
+            "timezone": "Europe/San Francisco"
+          },
+          "session_count": 16,
+          "gender": "male"
+        }
+      },
+      "ListAllExperimentsResponse": {
+        "title": "List all Experiments response",
+        "required": [
+          "id",
+          "created_at",
+          "user_id",
+          "email",
+          "first_name",
+          "last_name",
+          "name",
+          "metadata",
+          "last_seen_ip",
+          "location",
+          "experiments",
+          "devices",
+          "session_count"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "user_id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object"
+          },
+          "last_seen_ip": {
+            "type": "string"
+          },
+          "location": {
+            "type": "object"
+          },
+          "experiments": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": ""
+          },
+          "devices": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": ""
+          },
+          "session_count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "id": "548223f2c7036020742ff21c",
+          "created_at": "2015-01-06T03:51:57+00:00",
+          "user_id": "42",
+          "email": "jonathan@taplytics.com",
+          "first_name": "Jonathan",
+          "last_name": "Norris",
+          "name": "Jonathan Taylor Thomas Norris",
+          "metadata": {
+            "occupation": "Bug Fixer",
+            "favourite_color": "Chartreuse",
+            "favourite movie": "You Don't Mess With The Zohan"
+          },
+          "last_seen_ip": "123.123.123.123",
+          "location": {
+            "city_name": "San Francisco",
+            "continent_code": "NA",
+            "country_code": "USA",
+            "country_name": "United States",
+            "latitude": 37.77493,
+            "longitude": -122.41942,
+            "postal_code": null,
+            "region_name": "San Francisco",
+            "timezone": "Europe/San Francisco"
+          },
+          "experiments": [
+            {
+              "experiment_id": "548223f2c7036020742aa21c",
+              "variation": "548223f2c7036020742ff21a"
+            }
+          ],
+          "devices": [
+            {}
+          ],
+          "session_count": 16
+        }
+      },
+      "RetrieveAnExperimentResponse": {
+        "title": "Retrieve an Experiment response",
+        "required": [
+          "id",
+          "project_id",
+          "variations",
+          "winning_variation",
+          "baseline_variation",
+          "goal_ids",
+          "status",
+          "description",
+          "min_app_version",
+          "max_app_version",
+          "filters",
+          "created_at",
+          "updated_at"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "project_id": {
+            "type": "string"
+          },
+          "variations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "winning_variation": {
+            "type": "string"
+          },
+          "baseline_variation": {
+            "type": "string"
+          },
+          "goal_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "status": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "min_app_version": {
+            "type": "string"
+          },
+          "max_app_version": {
+            "type": "string"
+          },
+          "filters": {
+            "type": "object"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": "548223f2c7036020742ff21c",
+          "project_id": "52718670ef1a872530000022",
+          "variations": [
+            "548223f2c7036020742ff21c",
+            "512263f2c79g607s142gf21h"
+          ],
+          "winning_variation": "548223f2c7036020742ff21c",
+          "baseline_variation": "548223f2c7036020742ff21c",
+          "goal_ids": [
+            "54ac360cc4d37a81567a72e7"
+          ],
+          "status": "active",
+          "description": "Disables the Buy button",
+          "min_app_version": "1.0",
+          "max_app_version": "1.8.4",
+          "filters": {
+            "version": "1.2.3",
+            "os_version": "4.4.4"
+          },
+          "created_at": "2015-01-06T03:51:57+00:00",
+          "updated_at": "2015-01-06T03:51:57+00:00"
+        }
+      },
+      "RemoveAnExperimentResponse": {
+        "title": "Remove an Experiment response",
+        "required": [
+          "deleted",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "deleted": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "deleted": true,
+          "id": "548223f2c7036020742ff21c"
+        }
+      },
+      "CreateNewEventsRequest": {
+        "title": "Create New Events request",
+        "required": [
+          "name",
+          "date",
+          "value",
+          "metaData"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "value": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "metaData": {
+            "type": "object"
+          }
+        },
+        "example": {
+          "name": "Purchase",
+          "date": "2015-01-06T03:50:57+00:00",
+          "value": 42,
+          "metaData": {
+            "occupation": "Bug Fixer",
+            "favourite movie": "You Don't Mess With The Zohan"
+          }
+        }
+      },
+      "ListAllPushNotificationsResponse": {
+        "title": "List all Push Notifications response",
+        "required": [
+          "id",
+          "filters",
+          "notification",
+          "production"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": ""
+          },
+          "notification": {
+            "type": "object"
+          },
+          "production": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "id": "548013f2c703f020242ff21c",
+          "filters": [
+            {
+              "type": "an_version",
+              "comparator": ">=",
+              "values": [
+                "5.0.0"
+              ]
+            },
+            {
+              "type": "ios_version",
+              "comparator": "!=",
+              "values": [
+                "8.0.1"
+              ]
+            },
+            {
+              "type": "country",
+              "comparator": "=",
+              "values": [
+                "Canada",
+                "US"
+              ]
+            },
+            {
+              "type": "custom_data",
+              "comparator": ">=",
+              "values": [
+                16
+              ],
+              "dataKey": "dollars spent"
+            }
+          ],
+          "notification": {
+            "alert": "Congratulations, you've won a new VCR!"
+          },
+          "production": false
+        }
+      },
+      "SendANewPushNotificationRequest": {
+        "title": "Send a New Push Notification request",
+        "required": [
+          "name",
+          "filters",
+          "notification",
+          "image",
+          "filter_duplicate_content",
+          "production",
+          "is_silent"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": ""
+          },
+          "notification": {
+            "type": "object"
+          },
+          "image": {
+            "type": "object"
+          },
+          "filter_duplicate_content": {
+            "type": "boolean"
+          },
+          "production": {
+            "type": "boolean"
+          },
+          "is_silent": {
+            "type": "boolean"
+          }
+        }
+      },
+      "RetrieveAPushNotificationResponse": {
+        "title": "Retrieve a Push Notification response",
+        "required": [
+          "id",
+          "filters",
+          "notification",
+          "production"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": ""
+          },
+          "notification": {
+            "type": "object"
+          },
+          "production": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "id": "548013f2c703f020242ff21c",
+          "filters": [
+            {
+              "type": "an_version",
+              "comparator": ">=",
+              "values": [
+                "5.0.0"
+              ]
+            },
+            {
+              "type": "ios_version",
+              "comparator": "!=",
+              "values": [
+                "8.0.1"
+              ]
+            },
+            {
+              "type": "country",
+              "comparator": "=",
+              "values": [
+                "Canada",
+                "US"
+              ]
+            },
+            {
+              "type": "custom_data",
+              "comparator": ">=",
+              "values": [
+                16
+              ],
+              "dataKey": "dollars spent"
+            }
+          ],
+          "notification": {
+            "alert": "Congratulations, you've won a new VCR!"
+          },
+          "production": false
+        }
+      }
+    }
+  }
+}
