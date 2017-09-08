@@ -5,40 +5,42 @@ info:
   description: 'TODO: Add a description'
   license:
     name: MIT
-    url: http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT
-host: www.example.com
+    url: 'http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT'
+host: api.taplytics.com
 basePath: /
 schemes:
-- http
+  - http
 consumes:
-- application/json
+  - application/json
 produces:
-- application/json
+  - application/json
 paths:
   /v2/users:
     get:
       description: ''
       summary: List all Users
       tags:
-      - Users
+        - Users
       operationId: List all Users
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: page
-        in: query
-        required: false
-        type: integer
-        format: int32
-        description: The page number used for pagination
-      - name: per_page
-        in: query
-        required: false
-        type: integer
-        format: int32
-        description: An optional parameter to define the number of results you would like returned
+        - name: page
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: The page number used for pagination
+        - name: per_page
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: >-
+            An optional parameter to define the number of results you would like
+            returned
       responses:
-        200:
+        '200':
           description: ''
           schema:
             type: array
@@ -46,90 +48,112 @@ paths:
               $ref: '#/definitions/ListAllUsersResponse'
           examples:
             application/json:
-            - id: 548223f2c7036020742ff21c
-              created_at: 2015-01-06T03:51:57.0000000+00:00
-              user_id: 42
-              email: jonathan@taplytics.com
-              first_name: Jonathan
-              last_name: Norris
-              name: Jonathan Taylor Thomas Norris
-              metadata:
-                occupation: Bug Fixer
-                favourite_color: Chartreuse
-                favourite movie: You Don't Mess With The Zohan
-              last_seen_ip: 123.123.123.123
-              location:
-                city_name: San Francisco
-                continent_code: NA
-                country_code: USA
-                country_name: United States
-                latitude: 37.774929999999998
-                longitude: -122.41942
-                postal_code: 
-                region_name: San Francisco
-                timezone: Europe/San Francisco
-              experiments:
-              - experiment_id: 548223f2c7036020742aa21c
-                variation: 548223f2c7036020742ff21a
-              devices:
-              - {}
-              session_count: 16
+              - id: 548223f2c7036020742ff21c
+                created_at: 2015-01-06T03:51:57.000Z
+                user_id: 42
+                email: jonathan@taplytics.com
+                first_name: Jonathan
+                last_name: Norris
+                name: Jonathan Taylor Thomas Norris
+                metadata:
+                  occupation: Bug Fixer
+                  favourite_color: Chartreuse
+                  favourite movie: You Don't Mess With The Zohan
+                last_seen_ip: 123.123.123.123
+                location:
+                  city_name: San Francisco
+                  continent_code: NA
+                  country_code: USA
+                  country_name: United States
+                  latitude: 37.77493
+                  longitude: -122.41942
+                  postal_code: null
+                  region_name: San Francisco
+                  timezone: Europe/San Francisco
+                experiments:
+                  - experiment_id: 548223f2c7036020742aa21c
+                    variation: 548223f2c7036020742ff21a
+                devices:
+                  - {}
+                session_count: 16
       x-unitTests:
-      - request:
-          method: GET
-          uri: /v2/users?page=1&per_page=100
-        expectedResponse:
-          x-allowExtraHeaders: true
-          x-bodyMatchMode: RAW
-          x-arrayOrderedMatching: false
-          x-arrayCheckCount: false
-          x-matchResponseSchema: true
-          headers:
-            Content-Type: application/json; charset=utf-8
-          body: "[{    \"id\": \"548223f2c7036020742ff21c\",    \"created_at\": \"2015-01-06T03:51:57+00:00\",    \"user_id\": \"42\",    \"email\": \"jonathan@taplytics.com\",    \"first_name\": \"Jonathan\",    \"last_name\": \"Norris\",    \"name\": \"Jonathan Taylor Thomas Norris\",    \"metadata\": {        \"occupation\": \"Bug Fixer\",        \"favourite_color\": \"Chartreuse\",        \"favourite movie\": \"You Don't Mess With The Zohan\"    },    \"last_seen_ip\": \"123.123.123.123\",    \"location\": {        \"city_name\": \"San Francisco\",        \"continent_code\": \"NA\",        \"country_code\": \"USA\",        \"country_name\": \"United States\",        \"latitude\": 37.7749300,        \"longitude\": -122.4194200,        \"postal_code\": null,        \"region_name\": \"San Francisco\",        \"timezone\": \"Europe/San Francisco\"    },    \"experiments\": [{        \"experiment_id\": \"548223f2c7036020742aa21c\",        \"variation\": \"548223f2c7036020742ff21a\"    }],    \"devices\": [{    }],    \"session_count\": 16}]"
-        x-testShouldPass: true
-        x-testEnabled: true
-        x-testName: List all Users1
-        x-testDescription: Testcase for testing endpoint List all Users
+        - request:
+            method: GET
+            uri: /v2/users?page=1&per_page=100
+          expectedResponse:
+            x-allowExtraHeaders: true
+            x-bodyMatchMode: RAW
+            x-arrayOrderedMatching: false
+            x-arrayCheckCount: false
+            x-matchResponseSchema: true
+            headers:
+              Content-Type: application/json; charset=utf-8
+            body: >-
+              [{    "id": "548223f2c7036020742ff21c",    "created_at":
+              "2015-01-06T03:51:57+00:00",    "user_id": "42",    "email":
+              "jonathan@taplytics.com",    "first_name": "Jonathan",   
+              "last_name": "Norris",    "name": "Jonathan Taylor Thomas
+              Norris",    "metadata": {        "occupation": "Bug Fixer",       
+              "favourite_color": "Chartreuse",        "favourite movie": "You
+              Don't Mess With The Zohan"    },    "last_seen_ip":
+              "123.123.123.123",    "location": {        "city_name": "San
+              Francisco",        "continent_code": "NA",        "country_code":
+              "USA",        "country_name": "United States",        "latitude":
+              37.7749300,        "longitude": -122.4194200,       
+              "postal_code": null,        "region_name": "San Francisco",       
+              "timezone": "Europe/San Francisco"    },    "experiments":
+              [{        "experiment_id": "548223f2c7036020742aa21c",       
+              "variation": "548223f2c7036020742ff21a"    }],    "devices": [{   
+              }],    "session_count": 16}]
+          x-testShouldPass: true
+          x-testEnabled: true
+          x-testName: List all Users1
+          x-testDescription: Testcase for testing endpoint List all Users
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
-  /v2/users/{id}:
+  '/v2/users/{id}':
     get:
-      description: A single User object with all its details, accessed via either ID, email or your custom user ID. If an email or custom ID is provided in the URL parameters, the ID field can be omitted. Note that custom data can only be reliably kept with no more than one level of nesting. If the user currently has a custom data object and one is posted, the two will be merged.
+      description: >-
+        A single User object with all its details, accessed via either ID, email
+        or your custom user ID. If an email or custom ID is provided in the URL
+        parameters, the ID field can be omitted. Note that custom data can only
+        be reliably kept with no more than one level of nesting. If the user
+        currently has a custom data object and one is posted, the two will be
+        merged.
       summary: Retrieve a User
       tags:
-      - Users
+        - Users
       operationId: Retrieve a User
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: id
-        in: path
-        required: true
-        type: string
-        description: String `id` of the User to retrieve.
-      - name: user_id
-        in: query
-        required: false
-        type: string
-        description: Your custom defined user id.
-      - name: email
-        in: query
-        required: false
-        type: string
-        description: Your custom defined user email
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: String `id` of the User to retrieve.
+        - name: user_id
+          in: query
+          required: false
+          type: string
+          description: Your custom defined user id.
+        - name: email
+          in: query
+          required: false
+          type: string
+          description: Your custom defined user email
       responses:
-        200:
+        '200':
           description: ''
           schema:
             $ref: '#/definitions/RetrieveAUserResponse'
           examples:
             application/json:
               id: 548223f2c7036020742ff21c
-              created_at: 2015-01-06T03:51:57.0000000+00:00
+              created_at: 2015-01-06T03:51:57.000Z
               user_id: 42
               email: jonathan@taplytics.com
               first_name: Jonathan
@@ -144,74 +168,100 @@ paths:
                 continent_code: NA
                 country_code: USA
                 country_name: United States
-                latitude: 37.774929999999998
+                latitude: 37.77493
                 longitude: -122.41942
-                postal_code: 
+                postal_code: null
                 region_name: San Francisco
                 timezone: Europe/San Francisco
               session_count: 16
               gender: male
       x-unitTests:
-      - request:
-          method: GET
-          uri: /v2/users/548223f2c7036020742ff21c?user_id=42&email=jonathan@taplytics.com
-        expectedResponse:
-          x-allowExtraHeaders: true
-          x-bodyMatchMode: RAW
-          x-arrayOrderedMatching: false
-          x-arrayCheckCount: false
-          x-matchResponseSchema: true
-          headers:
-            Content-Type: application/json; charset=utf-8
-          body: "{    \"id\": \"548223f2c7036020742ff21c\",    \"created_at\": \"2015-01-06T03:51:57+00:00\",    \"user_id\": \"42\",    \"email\": \"jonathan@taplytics.com\",    \"first_name\": \"Jonathan\",    \"last_name\": \"Norris\",    \"custom_data\": {        \"occupation\": \"Bug Fixer\",        \"favourite_color\": \"Chartreuse\",        \"favourite movie\": \"You Don't Mess With The Zohan\"    },    \"last_seen_ip\": \"123.123.123.123\",    \"location\": {        \"city_name\": \"San Francisco\",        \"continent_code\": \"NA\",        \"country_code\": \"USA\",        \"country_name\": \"United States\",        \"latitude\": 37.7749300,        \"longitude\": -122.4194200,        \"postal_code\": null,        \"region_name\": \"San Francisco\",        \"timezone\": \"Europe/San Francisco\"    },    \"session_count\": 16,    \"gender\": \"male\"}"
-        x-testShouldPass: true
-        x-testEnabled: true
-        x-testName: Retrieve a User1
-        x-testDescription: A single User object with all its details, accessed via either ID, email or your custom user ID. If an email or custom ID is provided in the URL parameters, the ID field can be omitted. Note that custom data can only be reliably kept with no more than one level of nesting. If the user currently has a custom data object and one is posted, the two will be merged.
+        - request:
+            method: GET
+            uri: >-
+              /v2/users/548223f2c7036020742ff21c?user_id=42&email=jonathan@taplytics.com
+          expectedResponse:
+            x-allowExtraHeaders: true
+            x-bodyMatchMode: RAW
+            x-arrayOrderedMatching: false
+            x-arrayCheckCount: false
+            x-matchResponseSchema: true
+            headers:
+              Content-Type: application/json; charset=utf-8
+            body: >-
+              {    "id": "548223f2c7036020742ff21c",    "created_at":
+              "2015-01-06T03:51:57+00:00",    "user_id": "42",    "email":
+              "jonathan@taplytics.com",    "first_name": "Jonathan",   
+              "last_name": "Norris",    "custom_data": {        "occupation":
+              "Bug Fixer",        "favourite_color": "Chartreuse",       
+              "favourite movie": "You Don't Mess With The Zohan"    },   
+              "last_seen_ip": "123.123.123.123",    "location": {       
+              "city_name": "San Francisco",        "continent_code":
+              "NA",        "country_code": "USA",        "country_name": "United
+              States",        "latitude": 37.7749300,        "longitude":
+              -122.4194200,        "postal_code": null,        "region_name":
+              "San Francisco",        "timezone": "Europe/San Francisco"   
+              },    "session_count": 16,    "gender": "male"}
+          x-testShouldPass: true
+          x-testEnabled: true
+          x-testName: Retrieve a User1
+          x-testDescription: >-
+            A single User object with all its details, accessed via either ID,
+            email or your custom user ID. If an email or custom ID is provided
+            in the URL parameters, the ID field can be omitted. Note that custom
+            data can only be reliably kept with no more than one level of
+            nesting. If the user currently has a custom data object and one is
+            posted, the two will be merged.
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
     post:
-      description: A single User object with all its details, accessed via either ID, email or your custom user ID. If an email or custom ID is provided in the URL parameters, the ID field can be omitted. Note that custom data can only be reliably kept with no more than one level of nesting. If the user currently has a custom data object and one is posted, the two will be merged.
+      description: >-
+        A single User object with all its details, accessed via either ID, email
+        or your custom user ID. If an email or custom ID is provided in the URL
+        parameters, the ID field can be omitted. Note that custom data can only
+        be reliably kept with no more than one level of nesting. If the user
+        currently has a custom data object and one is posted, the two will be
+        merged.
       summary: Create or Update a User
       tags:
-      - Users
+        - Users
       operationId: Create or Update a User
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: id
-        in: path
-        required: true
-        type: string
-        description: String `id` of the User to retrieve.
-      - name: body
-        in: body
-        required: true
-        description: ''
-        schema:
-          $ref: '#/definitions/CreateOrUpdateAUserRequest'
-      - name: user_id
-        in: query
-        required: false
-        type: string
-        description: Your custom defined user id.
-      - name: email
-        in: query
-        required: false
-        type: string
-        description: Your custom defined user email
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: String `id` of the User to retrieve.
+        - name: body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/CreateOrUpdateAUserRequest'
+        - name: user_id
+          in: query
+          required: false
+          type: string
+          description: Your custom defined user id.
+        - name: email
+          in: query
+          required: false
+          type: string
+          description: Your custom defined user email
       responses:
-        200:
+        '200':
           description: ''
           schema:
             $ref: '#/definitions/CreateOrUpdateAUserResponse'
           examples:
             application/json:
               id: 548223f2c7036020742ff21c
-              created_at: 2015-01-06T03:51:57.0000000+00:00
+              created_at: 2015-01-06T03:51:57.000Z
               user_id: 42
               email: jonathan@taplytics.com
               first_name: Jonathan
@@ -226,84 +276,119 @@ paths:
                 continent_code: NA
                 country_code: USA
                 country_name: United States
-                latitude: 37.774929999999998
+                latitude: 37.77493
                 longitude: -122.41942
-                postal_code: 
+                postal_code: null
                 region_name: San Francisco
                 timezone: Europe/San Francisco
               session_count: 16
               gender: male
       x-unitTests:
-      - request:
-          method: POST
-          uri: /v2/users/548223f2c7036020742ff21c?user_id=42&email=jonathan@taplytics.com
-          headers:
-            Content-Type: application/json
-          body: "{    \"gender\": \"male\",    \"first_name\": \"Jonathan\",    \"last_name\": \"Norris\",    \"user_id\": \"42\",    \"custom_data\": {        \"occupation\": \"Bug Fixer\",        \"favourite movie\": \"You Don't Mess With The Zohan\"    },    \"email\": \"jonathan@taplytics.com\"}"
-        expectedResponse:
-          x-allowExtraHeaders: true
-          x-bodyMatchMode: RAW
-          x-arrayOrderedMatching: false
-          x-arrayCheckCount: false
-          x-matchResponseSchema: true
-          headers:
-            Content-Type: application/json; charset=utf-8
-          body: "{    \"id\": \"548223f2c7036020742ff21c\",    \"created_at\": \"2015-01-06T03:51:57+00:00\",    \"user_id\": \"42\",    \"email\": \"jonathan@taplytics.com\",    \"first_name\": \"Jonathan\",    \"last_name\": \"Norris\",    \"custom_data\": {        \"occupation\": \"Bug Fixer\",        \"favourite_color\": \"Chartreuse\",        \"favourite movie\": \"You Don't Mess With The Zohan\"    },    \"last_seen_ip\": \"123.123.123.123\",    \"location\": {        \"city_name\": \"San Francisco\",        \"continent_code\": \"NA\",        \"country_code\": \"USA\",        \"country_name\": \"United States\",        \"latitude\": 37.7749300,        \"longitude\": -122.4194200,        \"postal_code\": null,        \"region_name\": \"San Francisco\",        \"timezone\": \"Europe/San Francisco\"    },    \"session_count\": 16,    \"gender\": \"male\"}"
-        x-testShouldPass: true
-        x-testEnabled: true
-        x-testName: Create or Update a User1
-        x-testDescription: A single User object with all its details, accessed via either ID, email or your custom user ID. If an email or custom ID is provided in the URL parameters, the ID field can be omitted. Note that custom data can only be reliably kept with no more than one level of nesting. If the user currently has a custom data object and one is posted, the two will be merged.
+        - request:
+            method: POST
+            uri: >-
+              /v2/users/548223f2c7036020742ff21c?user_id=42&email=jonathan@taplytics.com
+            headers:
+              Content-Type: application/json
+            body: >-
+              {    "gender": "male",    "first_name": "Jonathan",   
+              "last_name": "Norris",    "user_id": "42",    "custom_data":
+              {        "occupation": "Bug Fixer",        "favourite movie": "You
+              Don't Mess With The Zohan"    },    "email":
+              "jonathan@taplytics.com"}
+          expectedResponse:
+            x-allowExtraHeaders: true
+            x-bodyMatchMode: RAW
+            x-arrayOrderedMatching: false
+            x-arrayCheckCount: false
+            x-matchResponseSchema: true
+            headers:
+              Content-Type: application/json; charset=utf-8
+            body: >-
+              {    "id": "548223f2c7036020742ff21c",    "created_at":
+              "2015-01-06T03:51:57+00:00",    "user_id": "42",    "email":
+              "jonathan@taplytics.com",    "first_name": "Jonathan",   
+              "last_name": "Norris",    "custom_data": {        "occupation":
+              "Bug Fixer",        "favourite_color": "Chartreuse",       
+              "favourite movie": "You Don't Mess With The Zohan"    },   
+              "last_seen_ip": "123.123.123.123",    "location": {       
+              "city_name": "San Francisco",        "continent_code":
+              "NA",        "country_code": "USA",        "country_name": "United
+              States",        "latitude": 37.7749300,        "longitude":
+              -122.4194200,        "postal_code": null,        "region_name":
+              "San Francisco",        "timezone": "Europe/San Francisco"   
+              },    "session_count": 16,    "gender": "male"}
+          x-testShouldPass: true
+          x-testEnabled: true
+          x-testName: Create or Update a User1
+          x-testDescription: >-
+            A single User object with all its details, accessed via either ID,
+            email or your custom user ID. If an email or custom ID is provided
+            in the URL parameters, the ID field can be omitted. Note that custom
+            data can only be reliably kept with no more than one level of
+            nesting. If the user currently has a custom data object and one is
+            posted, the two will be merged.
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
     delete:
-      description: A single User object with all its details, accessed via either ID, email or your custom user ID. If an email or custom ID is provided in the URL parameters, the ID field can be omitted. Note that custom data can only be reliably kept with no more than one level of nesting. If the user currently has a custom data object and one is posted, the two will be merged.
+      description: >-
+        A single User object with all its details, accessed via either ID, email
+        or your custom user ID. If an email or custom ID is provided in the URL
+        parameters, the ID field can be omitted. Note that custom data can only
+        be reliably kept with no more than one level of nesting. If the user
+        currently has a custom data object and one is posted, the two will be
+        merged.
       summary: Remove a User
       tags:
-      - Users
+        - Users
       operationId: Remove a User
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: id
-        in: path
-        required: true
-        type: string
-        description: String `id` of the User to retrieve.
-      - name: user_id
-        in: query
-        required: false
-        type: string
-        description: Your custom defined user id.
-      - name: email
-        in: query
-        required: false
-        type: string
-        description: >-
-          Your custom defined user email
-
-          +
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: String `id` of the User to retrieve.
+        - name: user_id
+          in: query
+          required: false
+          type: string
+          description: Your custom defined user id.
+        - name: email
+          in: query
+          required: false
+          type: string
+          description: Your custom defined user email +
       responses:
-        200:
+        '200':
           description: ''
       x-unitTests:
-      - request:
-          method: DELETE
-          uri: /v2/users/548223f2c7036020742ff21c?user_id=42&email=jonathan@taplytics.com
-        expectedResponse:
-          x-allowExtraHeaders: true
-          x-bodyMatchMode: NONE
-          x-arrayOrderedMatching: false
-          x-arrayCheckCount: false
-          x-matchResponseSchema: true
-          headers:
-            Content-Type: application/json; charset=utf-8
-        x-testShouldPass: true
-        x-testEnabled: true
-        x-testName: Remove a User1
-        x-testDescription: A single User object with all its details, accessed via either ID, email or your custom user ID. If an email or custom ID is provided in the URL parameters, the ID field can be omitted. Note that custom data can only be reliably kept with no more than one level of nesting. If the user currently has a custom data object and one is posted, the two will be merged.
+        - request:
+            method: DELETE
+            uri: >-
+              /v2/users/548223f2c7036020742ff21c?user_id=42&email=jonathan@taplytics.com
+          expectedResponse:
+            x-allowExtraHeaders: true
+            x-bodyMatchMode: NONE
+            x-arrayOrderedMatching: false
+            x-arrayCheckCount: false
+            x-matchResponseSchema: true
+            headers:
+              Content-Type: application/json; charset=utf-8
+          x-testShouldPass: true
+          x-testEnabled: true
+          x-testName: Remove a User1
+          x-testDescription: >-
+            A single User object with all its details, accessed via either ID,
+            email or your custom user ID. If an email or custom ID is provided
+            in the URL parameters, the ID field can be omitted. Note that custom
+            data can only be reliably kept with no more than one level of
+            nesting. If the user currently has a custom data object and one is
+            posted, the two will be merged.
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
@@ -314,25 +399,27 @@ paths:
       description: ''
       summary: List all Experiments
       tags:
-      - Experiments
+        - Experiments
       operationId: List all Experiments
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: page
-        in: query
-        required: false
-        type: integer
-        format: int32
-        description: The page number used for pagination
-      - name: per_page
-        in: query
-        required: false
-        type: integer
-        format: int32
-        description: An optional parameter to define the number of results you would like returned
+        - name: page
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: The page number used for pagination
+        - name: per_page
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: >-
+            An optional parameter to define the number of results you would like
+            returned
       responses:
-        200:
+        '200':
           description: ''
           schema:
             type: array
@@ -340,73 +427,89 @@ paths:
               $ref: '#/definitions/ListAllExperimentsResponse'
           examples:
             application/json:
-            - id: 548223f2c7036020742ff21c
-              created_at: 2015-01-06T03:51:57.0000000+00:00
-              user_id: 42
-              email: jonathan@taplytics.com
-              first_name: Jonathan
-              last_name: Norris
-              name: Jonathan Taylor Thomas Norris
-              metadata:
-                occupation: Bug Fixer
-                favourite_color: Chartreuse
-                favourite movie: You Don't Mess With The Zohan
-              last_seen_ip: 123.123.123.123
-              location:
-                city_name: San Francisco
-                continent_code: NA
-                country_code: USA
-                country_name: United States
-                latitude: 37.774929999999998
-                longitude: -122.41942
-                postal_code: 
-                region_name: San Francisco
-                timezone: Europe/San Francisco
-              experiments:
-              - experiment_id: 548223f2c7036020742aa21c
-                variation: 548223f2c7036020742ff21a
-              devices:
-              - {}
-              session_count: 16
+              - id: 548223f2c7036020742ff21c
+                created_at: 2015-01-06T03:51:57.000Z
+                user_id: 42
+                email: jonathan@taplytics.com
+                first_name: Jonathan
+                last_name: Norris
+                name: Jonathan Taylor Thomas Norris
+                metadata:
+                  occupation: Bug Fixer
+                  favourite_color: Chartreuse
+                  favourite movie: You Don't Mess With The Zohan
+                last_seen_ip: 123.123.123.123
+                location:
+                  city_name: San Francisco
+                  continent_code: NA
+                  country_code: USA
+                  country_name: United States
+                  latitude: 37.77493
+                  longitude: -122.41942
+                  postal_code: null
+                  region_name: San Francisco
+                  timezone: Europe/San Francisco
+                experiments:
+                  - experiment_id: 548223f2c7036020742aa21c
+                    variation: 548223f2c7036020742ff21a
+                devices:
+                  - {}
+                session_count: 16
       x-unitTests:
-      - request:
-          method: GET
-          uri: /v2/experiments?page=1&per_page=100
-        expectedResponse:
-          x-allowExtraHeaders: true
-          x-bodyMatchMode: RAW
-          x-arrayOrderedMatching: false
-          x-arrayCheckCount: false
-          x-matchResponseSchema: true
-          headers:
-            Content-Type: application/json; charset=utf-8
-          body: "[{    \"id\": \"548223f2c7036020742ff21c\",    \"created_at\": \"2015-01-06T03:51:57+00:00\",    \"user_id\": \"42\",    \"email\": \"jonathan@taplytics.com\",    \"first_name\": \"Jonathan\",    \"last_name\": \"Norris\",    \"name\": \"Jonathan Taylor Thomas Norris\",    \"metadata\": {        \"occupation\": \"Bug Fixer\",        \"favourite_color\": \"Chartreuse\",        \"favourite movie\": \"You Don't Mess With The Zohan\"    },    \"last_seen_ip\": \"123.123.123.123\",    \"location\": {        \"city_name\": \"San Francisco\",        \"continent_code\": \"NA\",        \"country_code\": \"USA\",        \"country_name\": \"United States\",        \"latitude\": 37.7749300,        \"longitude\": -122.4194200,        \"postal_code\": null,        \"region_name\": \"San Francisco\",        \"timezone\": \"Europe/San Francisco\"    },    \"experiments\": [{        \"experiment_id\": \"548223f2c7036020742aa21c\",        \"variation\": \"548223f2c7036020742ff21a\"    }],    \"devices\": [{    }],    \"session_count\": 16}]"
-        x-testShouldPass: true
-        x-testEnabled: true
-        x-testName: List all Experiments1
-        x-testDescription: Testcase for testing endpoint List all Experiments
+        - request:
+            method: GET
+            uri: /v2/experiments?page=1&per_page=100
+          expectedResponse:
+            x-allowExtraHeaders: true
+            x-bodyMatchMode: RAW
+            x-arrayOrderedMatching: false
+            x-arrayCheckCount: false
+            x-matchResponseSchema: true
+            headers:
+              Content-Type: application/json; charset=utf-8
+            body: >-
+              [{    "id": "548223f2c7036020742ff21c",    "created_at":
+              "2015-01-06T03:51:57+00:00",    "user_id": "42",    "email":
+              "jonathan@taplytics.com",    "first_name": "Jonathan",   
+              "last_name": "Norris",    "name": "Jonathan Taylor Thomas
+              Norris",    "metadata": {        "occupation": "Bug Fixer",       
+              "favourite_color": "Chartreuse",        "favourite movie": "You
+              Don't Mess With The Zohan"    },    "last_seen_ip":
+              "123.123.123.123",    "location": {        "city_name": "San
+              Francisco",        "continent_code": "NA",        "country_code":
+              "USA",        "country_name": "United States",        "latitude":
+              37.7749300,        "longitude": -122.4194200,       
+              "postal_code": null,        "region_name": "San Francisco",       
+              "timezone": "Europe/San Francisco"    },    "experiments":
+              [{        "experiment_id": "548223f2c7036020742aa21c",       
+              "variation": "548223f2c7036020742ff21a"    }],    "devices": [{   
+              }],    "session_count": 16}]
+          x-testShouldPass: true
+          x-testEnabled: true
+          x-testName: List all Experiments1
+          x-testDescription: Testcase for testing endpoint List all Experiments
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
-  /v2/experiments/{id}:
+  '/v2/experiments/{id}':
     get:
       description: A single Experiment object with all its details
       summary: Retrieve an Experiment
       tags:
-      - Experiments
+        - Experiments
       operationId: Retrieve an Experiment
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: id
-        in: path
-        required: true
-        type: string
-        description: String `id` of the Experiment to retrieve.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: String `id` of the Experiment to retrieve.
       responses:
-        200:
+        '200':
           description: ''
           schema:
             $ref: '#/definitions/RetrieveAnExperimentResponse'
@@ -415,38 +518,49 @@ paths:
               id: 548223f2c7036020742ff21c
               project_id: 52718670ef1a872530000022
               variations:
-              - 548223f2c7036020742ff21c
-              - 512263f2c79g607s142gf21h
+                - 548223f2c7036020742ff21c
+                - 512263f2c79g607s142gf21h
               winning_variation: 548223f2c7036020742ff21c
               baseline_variation: 548223f2c7036020742ff21c
               goal_ids:
-              - 54ac360cc4d37a81567a72e7
+                - 54ac360cc4d37a81567a72e7
               status: active
               description: Disables the Buy button
-              min_app_version: 1.0
+              min_app_version: 1
               max_app_version: 1.8.4
               filters:
                 version: 1.2.3
                 os_version: 4.4.4
-              created_at: 2015-01-06T03:51:57.0000000+00:00
-              updated_at: 2015-01-06T03:51:57.0000000+00:00
+              created_at: 2015-01-06T03:51:57.000Z
+              updated_at: 2015-01-06T03:51:57.000Z
       x-unitTests:
-      - request:
-          method: GET
-          uri: /v2/experiments/548223f2c7036020742ff21c
-        expectedResponse:
-          x-allowExtraHeaders: true
-          x-bodyMatchMode: RAW
-          x-arrayOrderedMatching: false
-          x-arrayCheckCount: false
-          x-matchResponseSchema: true
-          headers:
-            Content-Type: application/json; charset=utf-8
-          body: '{    "id": "548223f2c7036020742ff21c",    "project_id": "52718670ef1a872530000022",    "variations": [        "548223f2c7036020742ff21c",        "512263f2c79g607s142gf21h"    ],    "winning_variation": "548223f2c7036020742ff21c",    "baseline_variation": "548223f2c7036020742ff21c",    "goal_ids": ["54ac360cc4d37a81567a72e7"],    "status": "active",    "description": "Disables the Buy button",    "min_app_version": "1.0",    "max_app_version": "1.8.4",    "filters": {        "version": "1.2.3",        "os_version": "4.4.4"    },    "created_at": "2015-01-06T03:51:57+00:00",    "updated_at": "2015-01-06T03:51:57+00:00"}'
-        x-testShouldPass: true
-        x-testEnabled: true
-        x-testName: Retrieve an Experiment1
-        x-testDescription: A single Experiment object with all its details
+        - request:
+            method: GET
+            uri: /v2/experiments/548223f2c7036020742ff21c
+          expectedResponse:
+            x-allowExtraHeaders: true
+            x-bodyMatchMode: RAW
+            x-arrayOrderedMatching: false
+            x-arrayCheckCount: false
+            x-matchResponseSchema: true
+            headers:
+              Content-Type: application/json; charset=utf-8
+            body: >-
+              {    "id": "548223f2c7036020742ff21c",    "project_id":
+              "52718670ef1a872530000022",    "variations": [       
+              "548223f2c7036020742ff21c",        "512263f2c79g607s142gf21h"   
+              ],    "winning_variation": "548223f2c7036020742ff21c",   
+              "baseline_variation": "548223f2c7036020742ff21c",    "goal_ids":
+              ["54ac360cc4d37a81567a72e7"],    "status": "active",   
+              "description": "Disables the Buy button",    "min_app_version":
+              "1.0",    "max_app_version": "1.8.4",    "filters": {       
+              "version": "1.2.3",        "os_version": "4.4.4"    },   
+              "created_at": "2015-01-06T03:51:57+00:00",    "updated_at":
+              "2015-01-06T03:51:57+00:00"}
+          x-testShouldPass: true
+          x-testEnabled: true
+          x-testName: Retrieve an Experiment1
+          x-testDescription: A single Experiment object with all its details
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
@@ -456,18 +570,18 @@ paths:
       description: A single Experiment object with all its details
       summary: Remove an Experiment
       tags:
-      - Experiments
+        - Experiments
       operationId: Remove an Experiment
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: id
-        in: path
-        required: true
-        type: string
-        description: Taplytics id of the experiment you would like to delete.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Taplytics id of the experiment you would like to delete.
       responses:
-        200:
+        '200':
           description: ''
           schema:
             $ref: '#/definitions/RemoveAnExperimentResponse'
@@ -476,22 +590,22 @@ paths:
               deleted: true
               id: 548223f2c7036020742ff21c
       x-unitTests:
-      - request:
-          method: DELETE
-          uri: /v2/experiments/548223f2c7036020742ff21c
-        expectedResponse:
-          x-allowExtraHeaders: true
-          x-bodyMatchMode: RAW
-          x-arrayOrderedMatching: false
-          x-arrayCheckCount: false
-          x-matchResponseSchema: true
-          headers:
-            Content-Type: application/json; charset=utf-8
-          body: '{  "deleted": true,  "id": "548223f2c7036020742ff21c"}'
-        x-testShouldPass: true
-        x-testEnabled: true
-        x-testName: Remove an Experiment1
-        x-testDescription: A single Experiment object with all its details
+        - request:
+            method: DELETE
+            uri: /v2/experiments/548223f2c7036020742ff21c
+          expectedResponse:
+            x-allowExtraHeaders: true
+            x-bodyMatchMode: RAW
+            x-arrayOrderedMatching: false
+            x-arrayCheckCount: false
+            x-matchResponseSchema: true
+            headers:
+              Content-Type: application/json; charset=utf-8
+            body: '{  "deleted": true,  "id": "548223f2c7036020742ff21c"}'
+          x-testShouldPass: true
+          x-testEnabled: true
+          x-testName: Remove an Experiment1
+          x-testDescription: A single Experiment object with all its details
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
@@ -499,48 +613,60 @@ paths:
         IsMultiContentStreaming: false
   /v2/events:
     post:
-      description: Post a list of new events to the server. Must provide a session_id with the request, and each event must have a name. No more than 100 events can be sent in a single request body.
+      description: >-
+        Post a list of new events to the server. Must provide a session_id with
+        the request, and each event must have a name. No more than 100 events
+        can be sent in a single request body.
       summary: Create New Events
       tags:
-      - Events
+        - Events
       operationId: Create New Events
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: session_id
-        in: query
-        required: true
-        type: string
-        description: Taplytics id of the current user session you wish to send an event for
-      - name: body
-        in: body
-        required: true
-        description: ''
-        schema:
-          type: array
-          items:
-            $ref: '#/definitions/CreateNewEventsRequest'
+        - name: session_id
+          in: query
+          required: true
+          type: string
+          description: >-
+            Taplytics id of the current user session you wish to send an event
+            for
+        - name: body
+          in: body
+          required: true
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CreateNewEventsRequest'
       responses:
-        200:
+        '200':
           description: ''
       x-unitTests:
-      - request:
-          method: POST
-          uri: /v2/events?session_id=548223f2c7036020742ff21c
-          headers:
-            Content-Type: application/json
-          body: "[{    \"name\": \"Purchase\",    \"date\": \"2015-01-06T03:50:57+00:00\",    \"value\": 42,    \"metaData\": {        \"occupation\": \"Bug Fixer\",        \"favourite movie\": \"You Don't Mess With The Zohan\"    },}]"
-        expectedResponse:
-          x-allowExtraHeaders: true
-          x-bodyMatchMode: NONE
-          x-arrayOrderedMatching: false
-          x-arrayCheckCount: false
-          x-matchResponseSchema: true
-          headers: {}
-        x-testShouldPass: true
-        x-testEnabled: true
-        x-testName: Create New Events1
-        x-testDescription: Post a list of new events to the server. Must provide a session_id with the request, and each event must have a name. No more than 100 events can be sent in a single request body.
+        - request:
+            method: POST
+            uri: /v2/events?session_id=548223f2c7036020742ff21c
+            headers:
+              Content-Type: application/json
+            body: >-
+              [{    "name": "Purchase",    "date":
+              "2015-01-06T03:50:57+00:00",    "value": 42,    "metaData":
+              {        "occupation": "Bug Fixer",        "favourite movie": "You
+              Don't Mess With The Zohan"    },}]
+          expectedResponse:
+            x-allowExtraHeaders: true
+            x-bodyMatchMode: NONE
+            x-arrayOrderedMatching: false
+            x-arrayCheckCount: false
+            x-matchResponseSchema: true
+            headers: {}
+          x-testShouldPass: true
+          x-testEnabled: true
+          x-testName: Create New Events1
+          x-testDescription: >-
+            Post a list of new events to the server. Must provide a session_id
+            with the request, and each event must have a name. No more than 100
+            events can be sent in a single request body.
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
@@ -548,28 +674,32 @@ paths:
         IsMultiContentStreaming: false
   /v2/push:
     get:
-      description: The default endpoint to send a single push notification, or a batch of notifications.
+      description: >-
+        The default endpoint to send a single push notification, or a batch of
+        notifications.
       summary: List all Push Notifications
       tags:
-      - Push Notifications
+        - Push Notifications
       operationId: List all Push Notifications
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: page
-        in: query
-        required: false
-        type: integer
-        format: int32
-        description: The page number used for pagination
-      - name: per_page
-        in: query
-        required: false
-        type: integer
-        format: int32
-        description: An optional parameter to define the number of results you would like returned
+        - name: page
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: The page number used for pagination
+        - name: per_page
+          in: query
+          required: false
+          type: integer
+          format: int32
+          description: >-
+            An optional parameter to define the number of results you would like
+            returned
       responses:
-        200:
+        '200':
           description: ''
           schema:
             type: array
@@ -577,78 +707,92 @@ paths:
               $ref: '#/definitions/ListAllPushNotificationsResponse'
           examples:
             application/json:
-            - id: 548013f2c703f020242ff21c
-              filters:
-              - type: an_version
-                comparator: '>='
-                values:
-                - 5.0.0
-              - type: ios_version
-                comparator: '!='
-                values:
-                - 8.0.1
-              - type: country
-                comparator: =
-                values:
-                - Canada
-                - US
-              - type: custom_data
-                comparator: '>='
-                values:
-                - 16
-                dataKey: dollars spent
-              notification:
-                alert: Congratulations, you've won a new VCR!
-              production: false
+              - id: 548013f2c703f020242ff21c
+                filters:
+                  - type: an_version
+                    comparator: '>='
+                    values:
+                      - 5.0.0
+                  - type: ios_version
+                    comparator: '!='
+                    values:
+                      - 8.0.1
+                  - type: country
+                    comparator: =
+                    values:
+                      - Canada
+                      - US
+                  - type: custom_data
+                    comparator: '>='
+                    values:
+                      - 16
+                    dataKey: dollars spent
+                notification:
+                  alert: 'Congratulations, you''ve won a new VCR!'
+                production: false
       x-unitTests:
-      - request:
-          method: GET
-          uri: /v2/push?page=1&per_page=100
-        expectedResponse:
-          x-allowExtraHeaders: true
-          x-bodyMatchMode: RAW
-          x-arrayOrderedMatching: false
-          x-arrayCheckCount: false
-          x-matchResponseSchema: true
-          headers:
-            Content-Type: application/json
-          body: "[{    \"id\": \"548013f2c703f020242ff21c\",    \"filters\": [{        \"type\": \"an_version\",        \"comparator\": \">=\",        \"values\": [\"5.0.0\"]    },    {        \"type\": \"ios_version\",        \"comparator\": \"!=\",        \"values\": [\"8.0.1\"]    },    {        \"type\": \"country\",        \"comparator\": \"=\",        \"values\": [\"Canada\", \"US\"]    },    {        \"type\": \"custom_data\",        \"comparator\": \">=\",        \"values\": [16],        \"dataKey\": \"dollars spent\"    }],    \"notification\": {        \"alert\": \"Congratulations, you've won a new VCR!\"    },    \"production\": false}]"
-        x-testShouldPass: true
-        x-testEnabled: true
-        x-testName: List all Push Notifications1
-        x-testDescription: The default endpoint to send a single push notification, or a batch of notifications.
+        - request:
+            method: GET
+            uri: /v2/push?page=1&per_page=100
+          expectedResponse:
+            x-allowExtraHeaders: true
+            x-bodyMatchMode: RAW
+            x-arrayOrderedMatching: false
+            x-arrayCheckCount: false
+            x-matchResponseSchema: true
+            headers:
+              Content-Type: application/json
+            body: >-
+              [{    "id": "548013f2c703f020242ff21c",    "filters": [{       
+              "type": "an_version",        "comparator": ">=",        "values":
+              ["5.0.0"]    },    {        "type": "ios_version",       
+              "comparator": "!=",        "values": ["8.0.1"]    },    {       
+              "type": "country",        "comparator": "=",        "values":
+              ["Canada", "US"]    },    {        "type": "custom_data",       
+              "comparator": ">=",        "values": [16],        "dataKey":
+              "dollars spent"    }],    "notification": {        "alert":
+              "Congratulations, you've won a new VCR!"    },    "production":
+              false}]
+          x-testShouldPass: true
+          x-testEnabled: true
+          x-testName: List all Push Notifications1
+          x-testDescription: >-
+            The default endpoint to send a single push notification, or a batch
+            of notifications.
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
     post:
-      description: The default endpoint to send a single push notification, or a batch of notifications.
+      description: >-
+        The default endpoint to send a single push notification, or a batch of
+        notifications.
       summary: Send a New Push Notification
       tags:
-      - Push Notifications
+        - Push Notifications
       operationId: Send a New Push Notification
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: body
-        in: body
-        required: true
-        description: ''
-        schema:
-          $ref: '#/definitions/SendANewPushNotificationRequest'
-      - name: per_page
-        in: query
-        required: false
-        type: string
-        description: ''
-      - name: page
-        in: query
-        required: false
-        type: string
-        description: ''
+        - name: body
+          in: body
+          required: true
+          description: ''
+          schema:
+            $ref: '#/definitions/SendANewPushNotificationRequest'
+        - name: per_page
+          in: query
+          required: false
+          type: string
+          description: ''
+        - name: page
+          in: query
+          required: false
+          type: string
+          description: ''
       responses:
-        200:
+        '200':
           description: ''
           schema:
             type: object
@@ -659,23 +803,23 @@ paths:
         AllowDynamicQueryParameters: false
         AllowDynamicFormParameters: false
         IsMultiContentStreaming: false
-  /v2/push/{id}:
+  '/v2/push/{id}':
     get:
       description: The default endpoint to retrieve a single push notification
       summary: Retrieve a Push Notification
       tags:
-      - Push Notifications
+        - Push Notifications
       operationId: Retrieve a Push Notification
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: id
-        in: path
-        required: true
-        type: string
-        description: ''
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ''
       responses:
-        200:
+        '200':
           description: ''
           schema:
             $ref: '#/definitions/RetrieveAPushNotificationResponse'
@@ -683,44 +827,54 @@ paths:
             application/json:
               id: 548013f2c703f020242ff21c
               filters:
-              - type: an_version
-                comparator: '>='
-                values:
-                - 5.0.0
-              - type: ios_version
-                comparator: '!='
-                values:
-                - 8.0.1
-              - type: country
-                comparator: =
-                values:
-                - Canada
-                - US
-              - type: custom_data
-                comparator: '>='
-                values:
-                - 16
-                dataKey: dollars spent
+                - type: an_version
+                  comparator: '>='
+                  values:
+                    - 5.0.0
+                - type: ios_version
+                  comparator: '!='
+                  values:
+                    - 8.0.1
+                - type: country
+                  comparator: =
+                  values:
+                    - Canada
+                    - US
+                - type: custom_data
+                  comparator: '>='
+                  values:
+                    - 16
+                  dataKey: dollars spent
               notification:
-                alert: Congratulations, you've won a new VCR!
+                alert: 'Congratulations, you''ve won a new VCR!'
               production: false
       x-unitTests:
-      - request:
-          method: GET
-          uri: /v2/push/{id}
-        expectedResponse:
-          x-allowExtraHeaders: true
-          x-bodyMatchMode: RAW
-          x-arrayOrderedMatching: false
-          x-arrayCheckCount: false
-          x-matchResponseSchema: true
-          headers:
-            Content-Type: application/json
-          body: "{    \"id\": \"548013f2c703f020242ff21c\",    \"filters\": [{        \"type\": \"an_version\",        \"comparator\": \">=\",        \"values\": [\"5.0.0\"]    },    {        \"type\": \"ios_version\",        \"comparator\": \"!=\",        \"values\": [\"8.0.1\"]    },    {        \"type\": \"country\",        \"comparator\": \"=\",        \"values\": [\"Canada\", \"US\"]    },    {        \"type\": \"custom_data\",        \"comparator\": \">=\",        \"values\": [16],        \"dataKey\": \"dollars spent\"    }],    \"notification\": {        \"alert\": \"Congratulations, you've won a new VCR!\"    },    \"production\": false}"
-        x-testShouldPass: true
-        x-testEnabled: true
-        x-testName: Retrieve a Push Notification1
-        x-testDescription: The default endpoint to retrieve a single push notification
+        - request:
+            method: GET
+            uri: '/v2/push/{id}'
+          expectedResponse:
+            x-allowExtraHeaders: true
+            x-bodyMatchMode: RAW
+            x-arrayOrderedMatching: false
+            x-arrayCheckCount: false
+            x-matchResponseSchema: true
+            headers:
+              Content-Type: application/json
+            body: >-
+              {    "id": "548013f2c703f020242ff21c",    "filters": [{       
+              "type": "an_version",        "comparator": ">=",        "values":
+              ["5.0.0"]    },    {        "type": "ios_version",       
+              "comparator": "!=",        "values": ["8.0.1"]    },    {       
+              "type": "country",        "comparator": "=",        "values":
+              ["Canada", "US"]    },    {        "type": "custom_data",       
+              "comparator": ">=",        "values": [16],        "dataKey":
+              "dollars spent"    }],    "notification": {        "alert":
+              "Congratulations, you've won a new VCR!"    },    "production":
+              false}
+          x-testShouldPass: true
+          x-testEnabled: true
+          x-testName: Retrieve a Push Notification1
+          x-testDescription: The default endpoint to retrieve a single push notification
       x-operation-settings:
         CollectParameters: false
         AllowDynamicQueryParameters: false
@@ -731,7 +885,7 @@ definitions:
     title: List all Users response
     example:
       id: 548223f2c7036020742ff21c
-      created_at: 2015-01-06T03:51:57.0000000+00:00
+      created_at: 2015-01-06T03:51:57.000Z
       user_id: 42
       email: jonathan@taplytics.com
       first_name: Jonathan
@@ -747,16 +901,16 @@ definitions:
         continent_code: NA
         country_code: USA
         country_name: United States
-        latitude: 37.774929999999998
+        latitude: 37.77493
         longitude: -122.41942
-        postal_code: 
+        postal_code: null
         region_name: San Francisco
         timezone: Europe/San Francisco
       experiments:
-      - experiment_id: 548223f2c7036020742aa21c
-        variation: 548223f2c7036020742ff21a
+        - experiment_id: 548223f2c7036020742aa21c
+          variation: 548223f2c7036020742ff21a
       devices:
-      - {}
+        - {}
       session_count: 16
     type: object
     properties:
@@ -805,24 +959,24 @@ definitions:
         type: integer
         format: int32
     required:
-    - id
-    - created_at
-    - user_id
-    - email
-    - first_name
-    - last_name
-    - name
-    - metadata
-    - last_seen_ip
-    - location
-    - experiments
-    - devices
-    - session_count
+      - id
+      - created_at
+      - user_id
+      - email
+      - first_name
+      - last_name
+      - name
+      - metadata
+      - last_seen_ip
+      - location
+      - experiments
+      - devices
+      - session_count
   RetrieveAUserResponse:
     title: Retrieve a User response
     example:
       id: 548223f2c7036020742ff21c
-      created_at: 2015-01-06T03:51:57.0000000+00:00
+      created_at: 2015-01-06T03:51:57.000Z
       user_id: 42
       email: jonathan@taplytics.com
       first_name: Jonathan
@@ -837,9 +991,9 @@ definitions:
         continent_code: NA
         country_code: USA
         country_name: United States
-        latitude: 37.774929999999998
+        latitude: 37.77493
         longitude: -122.41942
-        postal_code: 
+        postal_code: null
         region_name: San Francisco
         timezone: Europe/San Francisco
       session_count: 16
@@ -881,17 +1035,17 @@ definitions:
         description: ''
         type: string
     required:
-    - id
-    - created_at
-    - user_id
-    - email
-    - first_name
-    - last_name
-    - custom_data
-    - last_seen_ip
-    - location
-    - session_count
-    - gender
+      - id
+      - created_at
+      - user_id
+      - email
+      - first_name
+      - last_name
+      - custom_data
+      - last_seen_ip
+      - location
+      - session_count
+      - gender
   CreateOrUpdateAUserRequest:
     title: Create or Update a User request
     example:
@@ -924,17 +1078,17 @@ definitions:
         description: ''
         type: string
     required:
-    - gender
-    - first_name
-    - last_name
-    - user_id
-    - custom_data
-    - email
+      - gender
+      - first_name
+      - last_name
+      - user_id
+      - custom_data
+      - email
   CreateOrUpdateAUserResponse:
     title: Create or Update a User response
     example:
       id: 548223f2c7036020742ff21c
-      created_at: 2015-01-06T03:51:57.0000000+00:00
+      created_at: 2015-01-06T03:51:57.000Z
       user_id: 42
       email: jonathan@taplytics.com
       first_name: Jonathan
@@ -949,9 +1103,9 @@ definitions:
         continent_code: NA
         country_code: USA
         country_name: United States
-        latitude: 37.774929999999998
+        latitude: 37.77493
         longitude: -122.41942
-        postal_code: 
+        postal_code: null
         region_name: San Francisco
         timezone: Europe/San Francisco
       session_count: 16
@@ -993,22 +1147,22 @@ definitions:
         description: ''
         type: string
     required:
-    - id
-    - created_at
-    - user_id
-    - email
-    - first_name
-    - last_name
-    - custom_data
-    - last_seen_ip
-    - location
-    - session_count
-    - gender
+      - id
+      - created_at
+      - user_id
+      - email
+      - first_name
+      - last_name
+      - custom_data
+      - last_seen_ip
+      - location
+      - session_count
+      - gender
   ListAllExperimentsResponse:
     title: List all Experiments response
     example:
       id: 548223f2c7036020742ff21c
-      created_at: 2015-01-06T03:51:57.0000000+00:00
+      created_at: 2015-01-06T03:51:57.000Z
       user_id: 42
       email: jonathan@taplytics.com
       first_name: Jonathan
@@ -1024,16 +1178,16 @@ definitions:
         continent_code: NA
         country_code: USA
         country_name: United States
-        latitude: 37.774929999999998
+        latitude: 37.77493
         longitude: -122.41942
-        postal_code: 
+        postal_code: null
         region_name: San Francisco
         timezone: Europe/San Francisco
       experiments:
-      - experiment_id: 548223f2c7036020742aa21c
-        variation: 548223f2c7036020742ff21a
+        - experiment_id: 548223f2c7036020742aa21c
+          variation: 548223f2c7036020742ff21a
       devices:
-      - {}
+        - {}
       session_count: 16
     type: object
     properties:
@@ -1082,40 +1236,40 @@ definitions:
         type: integer
         format: int32
     required:
-    - id
-    - created_at
-    - user_id
-    - email
-    - first_name
-    - last_name
-    - name
-    - metadata
-    - last_seen_ip
-    - location
-    - experiments
-    - devices
-    - session_count
+      - id
+      - created_at
+      - user_id
+      - email
+      - first_name
+      - last_name
+      - name
+      - metadata
+      - last_seen_ip
+      - location
+      - experiments
+      - devices
+      - session_count
   RetrieveAnExperimentResponse:
     title: Retrieve an Experiment response
     example:
       id: 548223f2c7036020742ff21c
       project_id: 52718670ef1a872530000022
       variations:
-      - 548223f2c7036020742ff21c
-      - 512263f2c79g607s142gf21h
+        - 548223f2c7036020742ff21c
+        - 512263f2c79g607s142gf21h
       winning_variation: 548223f2c7036020742ff21c
       baseline_variation: 548223f2c7036020742ff21c
       goal_ids:
-      - 54ac360cc4d37a81567a72e7
+        - 54ac360cc4d37a81567a72e7
       status: active
       description: Disables the Buy button
-      min_app_version: 1.0
+      min_app_version: 1
       max_app_version: 1.8.4
       filters:
         version: 1.2.3
         os_version: 4.4.4
-      created_at: 2015-01-06T03:51:57.0000000+00:00
-      updated_at: 2015-01-06T03:51:57.0000000+00:00
+      created_at: 2015-01-06T03:51:57.000Z
+      updated_at: 2015-01-06T03:51:57.000Z
     type: object
     properties:
       id:
@@ -1162,19 +1316,19 @@ definitions:
         description: ''
         type: string
     required:
-    - id
-    - project_id
-    - variations
-    - winning_variation
-    - baseline_variation
-    - goal_ids
-    - status
-    - description
-    - min_app_version
-    - max_app_version
-    - filters
-    - created_at
-    - updated_at
+      - id
+      - project_id
+      - variations
+      - winning_variation
+      - baseline_variation
+      - goal_ids
+      - status
+      - description
+      - min_app_version
+      - max_app_version
+      - filters
+      - created_at
+      - updated_at
   RemoveAnExperimentResponse:
     title: Remove an Experiment response
     example:
@@ -1189,13 +1343,13 @@ definitions:
         description: ''
         type: string
     required:
-    - deleted
-    - id
+      - deleted
+      - id
   CreateNewEventsRequest:
     title: Create New Events request
     example:
       name: Purchase
-      date: 2015-01-06T03:50:57.0000000+00:00
+      date: 2015-01-06T03:50:57.000Z
       value: 42
       metaData:
         occupation: Bug Fixer
@@ -1216,35 +1370,35 @@ definitions:
         description: ''
         type: object
     required:
-    - name
-    - date
-    - value
-    - metaData
+      - name
+      - date
+      - value
+      - metaData
   ListAllPushNotificationsResponse:
     title: List all Push Notifications response
     example:
       id: 548013f2c703f020242ff21c
       filters:
-      - type: an_version
-        comparator: '>='
-        values:
-        - 5.0.0
-      - type: ios_version
-        comparator: '!='
-        values:
-        - 8.0.1
-      - type: country
-        comparator: =
-        values:
-        - Canada
-        - US
-      - type: custom_data
-        comparator: '>='
-        values:
-        - 16
-        dataKey: dollars spent
+        - type: an_version
+          comparator: '>='
+          values:
+            - 5.0.0
+        - type: ios_version
+          comparator: '!='
+          values:
+            - 8.0.1
+        - type: country
+          comparator: =
+          values:
+            - Canada
+            - US
+        - type: custom_data
+          comparator: '>='
+          values:
+            - 16
+          dataKey: dollars spent
       notification:
-        alert: Congratulations, you've won a new VCR!
+        alert: 'Congratulations, you''ve won a new VCR!'
       production: false
     type: object
     properties:
@@ -1263,10 +1417,10 @@ definitions:
         description: ''
         type: boolean
     required:
-    - id
-    - filters
-    - notification
-    - production
+      - id
+      - filters
+      - notification
+      - production
   SendANewPushNotificationRequest:
     title: Send a New Push Notification request
     type: object
@@ -1295,38 +1449,38 @@ definitions:
         description: ''
         type: boolean
     required:
-    - name
-    - filters
-    - notification
-    - image
-    - filter_duplicate_content
-    - production
-    - is_silent
+      - name
+      - filters
+      - notification
+      - image
+      - filter_duplicate_content
+      - production
+      - is_silent
   RetrieveAPushNotificationResponse:
     title: Retrieve a Push Notification response
     example:
       id: 548013f2c703f020242ff21c
       filters:
-      - type: an_version
-        comparator: '>='
-        values:
-        - 5.0.0
-      - type: ios_version
-        comparator: '!='
-        values:
-        - 8.0.1
-      - type: country
-        comparator: =
-        values:
-        - Canada
-        - US
-      - type: custom_data
-        comparator: '>='
-        values:
-        - 16
-        dataKey: dollars spent
+        - type: an_version
+          comparator: '>='
+          values:
+            - 5.0.0
+        - type: ios_version
+          comparator: '!='
+          values:
+            - 8.0.1
+        - type: country
+          comparator: =
+          values:
+            - Canada
+            - US
+        - type: custom_data
+          comparator: '>='
+          values:
+            - 16
+          dataKey: dollars spent
       notification:
-        alert: Congratulations, you've won a new VCR!
+        alert: 'Congratulations, you''ve won a new VCR!'
       production: false
     type: object
     properties:
@@ -1345,7 +1499,7 @@ definitions:
         description: ''
         type: boolean
     required:
-    - id
-    - filters
-    - notification
-    - production
+      - id
+      - filters
+      - notification
+      - production
