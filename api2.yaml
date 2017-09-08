@@ -7,7 +7,7 @@ info:
     name: MIT
     url: 'http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT'
 host: api.taplytics.com
-basePath:
+basePath: /
 schemes:
   - https
 consumes:
