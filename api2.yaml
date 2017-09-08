@@ -9,7 +9,7 @@ info:
 host: api.taplytics.com
 basePath: /
 schemes:
-  - http
+  - https
 consumes:
   - application/json
 produces:
