@@ -1503,3 +1503,4 @@ definitions:
       - notification
       - production
 x-explorer-enabled: false
+x-samples-languages: ['curl', 'node', 'ruby', 'javascript', 'python', 'swift', 'java', 'go']
